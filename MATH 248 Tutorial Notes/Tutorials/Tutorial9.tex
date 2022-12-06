@@ -1,0 +1,291 @@
+\subsection{Section 8.1}
+
+\begin{tcolorbox}[
+        title={Problem 17},
+        valign=center,
+        nobeforeafter,
+        colframe=gray!95!black
+    ]
+    Verify Green's Theorem for \(P = 2x^3 - y^3\), \(Q = x^3 + y^3\), and the annular region \(D\) described by \(a \leq x^2 + y^2 \leq b\).
+\end{tcolorbox}
+
+We must verify:
+\begin{align}
+    \int_{\partial D} P \ dx + Q \ dy &= \iint_D \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \ dxdy 
+\end{align}
+\begin{solution}
+    \textit{(Surface integral)}
+    
+    We first compute the partial derivatives:
+    \begin{align*}
+        \frac{\partial Q}{\partial x} &= 3x^2 & \frac{\partial P}{\partial y} &= -3y^2
+    \end{align*}
+    
+    We now evaluate the integral:
+    \begin{align*}
+        \iint_D \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \ dxdy &= \iint_D 3x^2 + 3y^2 \ dxdy 
+    \end{align*}
+    
+    Recall polar coordinates:
+    \begin{align*}
+        x^2 + y^2 &= r^2 & dxdy &= r \ dr d\theta
+    \end{align*}
+    
+    Then the domain in polar coordinates is given by:
+    \begin{align}
+        D &= \{(r, \theta) \ | \ \sqrt{a} \leq r \leq \sqrt{b}, \ 0 \leq \theta \leq 2\pi\}
+    \end{align}
+    
+    Then then integral is given by:
+    \begin{align*}
+        \iint_D \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \ dxdy &= \iint_D 3x^2 + 3y^2 \ dxdy \\
+        &= 3\iint_D r^2 r \ dr d\theta \\
+        &= 3\int_0^{2\pi} \int_{\sqrt{a}}^{\sqrt{b}} r^3 \ dr d\theta \\
+        &= 3\int_0^{2\pi} \frac{r^4}{4} \Biggr|_{\sqrt{a}}^{\sqrt{b}} \ d\theta \\
+        &= \frac{3}{4}(b^2 - a^2) \int_0^{2\pi} d\theta \\
+        &= \frac{3\pi}{2}(b^2 - a^2)
+    \end{align*}
+\end{solution}
+
+\begin{solution}
+    \textit{(Line integral)}
+    
+    Observe that the boundary of the domain \(D\) is the circle of radius \(\sqrt{a}\) and the circle of radius \(\sqrt{b}\):
+    \begin{align}
+        \partial D &= \{(x, y) \in \mathbb{R}^2 \ | \ x^2 + y^2 = a\} \cup \{(x, y) \in \mathbb{R}^2 \ | \ x^2 + y^2 = b\}
+    \end{align}
+    
+    In order for the domain \(D\) to remain on the left as you traverse along the curves, the inner circle must be oriented clockwise and the outer circle must be oriented counter-clockwise relative to the \(xy\) plane.
+    
+    We may then parametrize these boundary segments respectively by:
+    \begin{align}
+        \vb{c}_1(t) &= \left(\sqrt{a}\cos(t), \sqrt{a}\sin(t)\right) & \vb{c}_2(t) &= \left(\sqrt{b}\cos(t), \sqrt{b}\sin(t)\right)
+    \end{align}
+    where \(0 \leq t \leq 2\pi\).
+    
+    We now evaluate the integral:
+    \begin{align*}
+        \int_{\partial D} P \ dx + Q \ dy &= \int_{\partial D} (P, Q) \ (dx, dy) \\ 
+        &= \int_{\partial D} (2x^3 - y^3, x^3 + y^3) \cdot d\vb{s} \\ 
+        &= \int_{C_1} (2x^3 - y^3, x^3 + y^3) \cdot d\vb{s} + \int_{C_2} (2x^3 - y^3, x^3 + y^3) \cdot d\vb{s} \\
+        &= \int_0^{-2\pi} \left(2\sqrt{a^3}\cos^3(t) - \sqrt{a^3}\sin^3(t), \sqrt{a^3}\cos^3(t) + \sqrt{a^3}\sin^3(t)\right) \cdot \vb{c}'_1(t) \ dt \\
+        &\quad + \int_0^{2\pi} \left(2\sqrt{b^3}\cos^3(t) - \sqrt{b^3}\sin^3(t), \sqrt{b^3}\cos^3(t) + \sqrt{b^3}\sin^3(t)\right) \cdot \vb{c}'_2(t) \ dt \\
+        &= \int_0^{-2\pi} \left(2\sqrt{a^3}\cos^3(t) - \sqrt{a^3}\sin^3(t), \sqrt{a^3}\cos^3(t) + \sqrt{a^3}\sin^3(t)\right) \cdot \left(-\sqrt{a}\sin(t), \sqrt{a}\cos(t)\right) \ dt \\
+        &\quad + \int_0^{2\pi} \left(2\sqrt{b^3}\cos^3(t) - \sqrt{b^3}\sin^3(t), \sqrt{b^3}\cos^3(t) + \sqrt{b^3}\sin^3(t)\right) \cdot \left(-\sqrt{b}\sin(t), \sqrt{b}\cos(t)\right) \ dt \\
+        &= \int_0^{-2\pi} -2a^2\cos^3(t)\sin(t) + a^2\sin^4(t) + a^2\cos^4(t) + a^2\sin^3(t)\cos(t) \ dt \\
+        &\quad + \int_0^{2\pi} -2b^2\cos^3(t)\sin(t) +b^2\sin^4(t) + b^2\cos^4(t) + b^2\sin^3(t)\cos(t) \ dt \\
+        &= \int_0^{-2\pi} -2a^2\cos^3(t)\sin(t) + a^2\sin^4(t) + a^2\cos^4(t) + a^2\sin^3(t)\cos(t) \ dt \\
+        &\quad + \int_0^{2\pi} -2b^2\cos^3(t)\sin(t) +b^2\sin^4(t) + b^2\cos^4(t) + b^2\sin^3(t)\cos(t) \ dt \\
+        &= -\frac{3\pi}{2}a^2 + \frac{3\pi}{2}b^2 \\
+        &= \frac{3\pi}{2}(b^2 - a^2)
+    \end{align*}
+    by WolframAlpha.
+    
+    Then we have verified Green's Theorem for this specific example.
+\end{solution}
+
+\begin{tcolorbox}[
+        title={Problem 24},
+        valign=center,
+        nobeforeafter,
+        colframe=gray!95!black
+    ]
+    If \(C\) is a simple, closed curve that bounds a region to which Green’s Theorem applies, then the area of the region \(D\) bounded by \(C = \partial D \) is given by:
+    \begin{align}
+        A &= \frac{1}{2} \int_{\partial D} x \ dy - y \ dx
+    \end{align}
+    
+    Use the above statement to recover the formula:
+    \begin{align}
+        A &= \frac{1}{2} \int_a^b r^2 \ d\theta
+    \end{align}
+    for a region in polar coordinates.
+\end{tcolorbox}
+
+\begin{solution}
+    Recall Green's Theorem:
+    \begin{align}
+        \int_{\partial D} P \ dx + Q \ dy &= \iint_D \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} \ dxdy
+    \end{align}
+    
+    Observe that by Green's Theorem:
+    \begin{align*}
+        A &= \frac{1}{2} \int_{\partial D} x \ dy - y \ dx \\
+        &= \frac{1}{2} \int_{\partial D} - y \ dx + x \ dy \\
+        &= \frac{1}{2} \iint_{D} \frac{\partial x}{\partial x} - \frac{\partial (-y)}{\partial y} \ dxdy \\
+        &= \frac{1}{2} \iint_{D} 1 + 1 \ dxdy \\
+        &= \frac{1}{2} \iint_{D} 2 \ dxdy \\
+        &= \iint_{D} dA
+    \end{align*}
+
+    Recall polar coordinates:
+    \begin{align}
+        dA &= r \ dr d\theta
+    \end{align}
+
+    Then, for an arbitrary region \(D\):
+    \begin{align*}
+        A &= \iint_{D} dA \\
+        &= \int_{a}^{b} \int_0^r r \ dr d\theta \\
+        &= \int_{a}^{b} \frac{r^2}{2} \Biggr|_0^r \ d\theta \\
+        &= \frac{1}{2} \int_{a}^{b} r^2 \ d\theta
+    \end{align*}
+    where the radial direction \(r\) may or may not depend on \(\theta\), and \(a \leq \theta \leq b\) for arbitrary angles \(a\) and \(b\).
+\end{solution}
+
+\subsection{Section 8.2}
+
+\begin{tcolorbox}[
+        title={Problem 17},
+        valign=center,
+        nobeforeafter,
+        colframe=gray!95!black
+    ]
+    Calculate the surface integral:
+    \begin{align}
+        \iint_S \nabla \times \vb{F} \cdot d\vb{S}
+    \end{align}
+    where \(S\) is the hemisphere \(x^2 + y^2 + z^2 = 1\) where \(x \geq 0\), and \(\vb{F} = x^3 \vb{i} - y^3 \vb{j}\).
+\end{tcolorbox}
+
+\begin{solution}
+    \textit{(Surface integral)}
+    
+    We first compute the curl of \(\vb{F}\):
+    \begin{align*}
+        \nabla \times \vb{F} &= \vb{0}
+    \end{align*}
+    
+    Then, trivially:
+    \begin{align*}
+        \iint_S \nabla \times \vb{F} \cdot d\vb{S} &= \iint_S \vb{0} \cdot d\vb{S} \\
+        &= 0
+    \end{align*}
+\end{solution}
+
+\begin{solution}
+    \textit{(Line integral)}
+    
+    Observe then that the boundary of the surface \(S\) is the unit circle lying on the \(yz\) plane:
+    \begin{align}
+        \partial S &= \{(x, y, z) \in \mathbb{R}^3 \ | \ y^2 + z^2 = 1, x = 0\}
+    \end{align}
+
+    Since the normal of the surface \(S\) points outwards, the orientation for this curve must be clockwise relative to the \(yz\) plane.
+
+    We may then parametrize this boundary by:
+    \begin{align}
+        \vb{c}(t) &= (0, \cos(t), \sin(t))
+    \end{align}
+    where \(0 \leq t \leq 2\pi\).
+    
+    Observe that \(\vb{F}\) has no singularities on \(S\).
+    
+    Then by Stokes' Theorem:
+    \begin{align*}
+        \iint_S \nabla \times \vb{F} \cdot d \vb{S} &= \oint_{\partial S} \vb{F} \cdot d\vb{s} \\
+        &= \int_{2\pi}^{0} \vb{F}(\vb{c}(t)) \cdot \vb{c}'(t) \ dt \\
+        &= \int_{2\pi}^{0} (0, -\cos^3(t), 0) \cdot (0, -\sin(t), \cos(t)) \ dt \\
+        &= \int_{2\pi}^{0} \cos^3(t)\sin(t) \ dt \\
+        &= - \frac{\cos^4(x)}{4} \Biggr|_{2\pi}^{0} \\
+        &= 0
+    \end{align*}
+\end{solution}
+
+\begin{tcolorbox}[
+        title={Problem 29},
+        valign=center,
+        nobeforeafter,
+        colframe=gray!95!black
+    ]
+    Verify Stokes' Theorem for the helicoid
+    \begin{align}
+        \Phi(r, \theta) &= (r \cos(\theta), r\sin(\theta), \theta)
+    \end{align}
+    where \((r, \theta) \in [0, 1] \times \left[0, \frac{\pi}{2}\right]\), and \(\vb{F}(x, y, z) = (z, x, y)\).
+\end{tcolorbox}
+
+We must verify:
+\begin{align}
+    \int_{\partial S} \vb{F} \cdot d\vb{s} &= \iint_S \nabla \times \vb{F} \cdot d\vb{S}
+\end{align}
+
+\begin{solution}
+    \textit{(Surface integral)}
+    
+    We first compute the curl of \(\vb{F}\):
+    \begin{align*}
+        \nabla \times \vb{F} &= (1, 1, 1)
+    \end{align*}
+    
+    We now compute the partial derivatives of \(\Phi\):
+    \begin{align*}
+        \Phi_r &= (\cos(\theta), \sin(\theta), 0) & \Phi_\theta &= (-r \sin(\theta), r\cos(\theta), 1)
+    \end{align*}
+    
+    We now compute the cross product \(\Phi_r \times \Phi_\theta\):
+    \begin{align*}
+        \Phi_r \times \Phi_\theta &= (\sin(\theta), -\cos(\theta), r)
+    \end{align*}
+    
+    We now evaluate the integral:
+    \begin{align*}
+        \iint_S \nabla \times \vb{F} \cdot d\vb{S} &= \iint_D \left(\nabla \times \vb{F}\right) \cdot \left(\Phi_r \times \Phi_\theta\right) \ dr d\theta \\
+        &= \int_0^{\frac{\pi}{2}} \int_0^1 \left(1, 1, 1\right) \cdot (\sin(\theta), -\cos(\theta), r) \ dr d\theta \\
+        &= \int_0^{\frac{\pi}{2}} \int_0^1 \sin(\theta) - \cos(\theta) + r \ dr d\theta \\
+        &= \int_0^{\frac{\pi}{2}} \left(r\sin(\theta) - r\cos(\theta) + \frac{r^2}{2}\right) \Biggr|_0^1 \ d\theta \\
+        &= \int_0^{\frac{\pi}{2}} \sin(\theta) - \cos(\theta) + \frac{1}{2} \ d\theta \\
+        &= \left( -\cos(\theta) - \sin(\theta) + \frac{\theta}{2}\right) \Biggr|_0^{\frac{\pi}{2}} \\
+        &= 0 + 0 + \frac{\pi}{4} \\
+        &= \frac{\pi}{4}
+    \end{align*}
+\end{solution}
+
+\begin{solution}
+    \textit{(Line integral)}
+    
+    Observe that the boundary of \(D\) is given by:
+    \begin{align*}
+        \partial D &= \left\{r = 0, \ 0 \leq \theta \leq \frac{\pi}{2}\right\} \cup \left\{r = 1, \ 0 \leq \theta \leq \frac{\pi}{2}\right\} \cup \left\{0 \leq r \leq 1, \ \theta = 0\right\} \cup \left\{0 \leq r \leq 1, \ \theta = \frac{\pi}{2} \right\}
+    \end{align*}
+    
+    In order for the domain D to remain on the left as you traverse along the curves, the boundary must be traversed counter-clockwise relative to the \(r\theta\) plane.
+    
+    We may then parametrize these boundary segments respectively by:
+    \begin{align*}
+        \vb{c}_1(t) &= \left(t, 0\right) & \vb{c}_2(t) &= \left(1, \frac{\pi}{2}t\right) \\
+        \vb{c}_3(t) &= \left(1 - t, \frac{\pi}{2}\right) & \vb{c}_4(t) &= \left(0, \frac{\pi}{2}(1 - t)\right)
+    \end{align*}
+    where \(0 \leq t \leq 1\).
+    
+    Other parametrizations are equally valid. Note, however, that this parametrization is in terms of \(r\) and \(\theta\).
+    
+    To find our parametrization in terms of \(x\), \(y\), and \(z\) (this is required because of our vector field \(\vb{F}\)), we must use our initial parametrization \(\Phi\):
+    \begin{align*}
+        \Phi(\vb{c}_1(t)) &= (t \cos(0), t\sin(0), 0) & \Phi(\vb{c}_2(t)) &= \left( \cos\left(\frac{\pi}{2}t\right), \sin\left(\frac{\pi}{2}t\right), \frac{\pi}{2}t\right) \\
+        &= (t, 0, 0) \\
+        \\
+        \Phi(\vb{c}_3(t)) &= \left(0, (1 - t), \frac{\pi}{2}\right) & \Phi(\vb{c}_4(t)) &= \left(0, 0, \frac{\pi}{2}(1 - t)\right)
+    \end{align*}
+    
+    We now evaluate the integral:
+    \begin{align*}
+        \int_{\partial D} \vb{F} \cdot d\vb{s} &= \int_{\partial D} (z, x, y) \cdot d\vb{s} \\
+        &= \int_{\partial D} (\theta, r\cos(\theta), r\sin(\theta)) \cdot d\vb{s} \\
+        &= \int_{C_1} (\theta, r\cos(\theta), r\sin(\theta)) \cdot d\vb{s} + \int_{C_2} (\theta, r\cos(\theta), r\sin(\theta)) \cdot d\vb{s} \\
+        &\quad + \int_{C_3} (\theta, r\cos(\theta), r\sin(\theta)) \cdot d\vb{s} + \int_{C_4} (\theta, r\cos(\theta), r\sin(\theta)) \cdot d\vb{s} \\
+        &= \int_0^1 (0, t\cos(0), t\sin(0)) \cdot \Phi'(\vb{c}_1(t)) \ dt + \int_0^1 \left(\frac{\pi}{2}t, \cos\left(\frac{\pi}{2}t\right), \sin\left(\frac{\pi}{2}t\right)\right) \cdot \Phi'(\vb{c}_2(t)) \ dt \\
+        &\quad + \int_0^1 \left(\frac{\pi}{2}, (1 - t)\cos\left(\frac{\pi}{2}\right), (1- t)\sin\left(\frac{\pi}{2}\right)\right) \cdot \Phi'(\vb{c}_3(t)) \ dt + \int_0^1 \left(\frac{\pi}{2}(1 - t), 0, 0\right) \cdot \Phi'(\vb{c}_4(t)) \ dt \\
+        &= \int_0^1 (0, t\cos(0), t\sin(0)) \cdot (1, 0, 0) \ dt \\
+        &\quad + \int_0^1 \left(\frac{\pi}{2}t, \cos\left(\frac{\pi}{2}t\right), \sin\left(\frac{\pi}{2}t\right)\right) \cdot \left(-\frac{\pi}{2}\sin\left(\frac{\pi}{2}t\right), \frac{\pi}{2}\cos\left(\frac{\pi}{2}t\right), \frac{\pi}{2}\right) \ dt \\
+        &\quad + \int_0^1 \left(\frac{\pi}{2}, 0, 1- t\right) \cdot (0, -1, 0) \ dt + \int_0^1 \left(\frac{\pi}{2}(1 - t), 0, 0\right) \cdot \left(0, 0, -\frac{\pi}{2}\right) \ dt \\
+        &= \int_0^1 0 \ dt + \int_0^1 \left(\frac{\pi}{2}t, \cos\left(\frac{\pi}{2}t\right), \sin\left(\frac{\pi}{2}t\right)\right) \cdot \left(-\frac{\pi}{2}\sin\left(\frac{\pi}{2}t\right), \frac{\pi}{2}\cos\left(\frac{\pi}{2}t\right), \frac{\pi}{2}\right) \ dt \\
+        &\quad + \int_0^1 0 \ dt + \int_0^1 0 \ dt \\
+        &= \int_0^1 \left(\frac{\pi}{2}t, \cos\left(\frac{\pi}{2}t\right), \sin\left(\frac{\pi}{2}t\right)\right) \cdot \left(-\frac{\pi}{2}\sin\left(\frac{\pi}{2}t\right), \frac{\pi}{2}\cos\left(\frac{\pi}{2}t\right), \frac{\pi}{2}\right) \ dt \\
+        &= \int_0^1 -\frac{\pi^2}{4}t \sin\left(\frac{\pi}{2}t\right) +  \frac{\pi}{2}\cos^2\left(\frac{\pi}{2}t\right) + \frac{\pi}{2}\sin\left(\frac{\pi}{2}t\right) \ dt \\
+        &= \frac{\pi}{4}
+    \end{align*}
+    by WolframAlpha.
+    
+    Then we have verified Stokes' Theorem for this specific example.
+\end{solution}

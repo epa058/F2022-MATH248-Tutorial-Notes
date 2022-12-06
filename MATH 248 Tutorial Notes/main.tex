@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={6.5in, 9.5in}]{geometry}
+\usepackage{amscd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage[makeroom]{cancel}
+\usepackage{comment}
+\usepackage{dashrule}
+\usepackage{esint}
+\usepackage{esvect}
+\usepackage{fancyhdr}
+\usepackage{graphicx, epsfig}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{latexsym}
+%\usepackage{mathabx}
+\usepackage{mathrsfs}
+\usepackage{mathtools, nccmath}
+\usepackage{parskip}
+\usepackage{physics}
+\usepackage{tcolorbox}
+\usepackage{tikz-cd}
+\usepackage{times} 
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{xcolor}
+\usepackage{xy}
+
+\setcounter{secnumdepth}{-2}
+
+\makeatletter
+\def\th@definition{\thm@notefont{}}
+\makeatother
+
+\let\qedsymbolclaim\qedsymbol
+
+\theoremstyle{remark}
+\newtheorem*{solution}{Solution}
+\newenvironment{claimproof}{\begin{proof}[Proof of Claim]}{\end{proof}}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem{example}[theorem]{Example}
+\numberwithin{equation}{section}
+
+\title{MATH 248 Tutorial Notes}
+\author{Simon Chen and Ruth Wang}
+\date{December 6, 2022}
+
+\begin{document}
+
+\maketitle
+
+{
+\centering \hypersetup{hidelinks}
+\tableofcontents
+}
+
+\newpage 
+
+\setcounter{section}{1}
+\section{\centering Tutorial 1}
+
+\input{Tutorials/Tutorial1.tex}
+
+\newpage
+
+\setcounter{section}{2}
+\section{\centering Tutorial 2}
+
+\input{Tutorials/Tutorial2.tex}
+
+\newpage 
+
+\setcounter{section}{3}
+\section{\centering Tutorial 3}
+
+\input{Tutorials/Tutorial3.tex}
+
+\newpage 
+
+\setcounter{section}{4}
+\section{\centering Tutorial 4}
+
+\input{Tutorials/Tutorial4.tex}
+
+\newpage 
+
+\setcounter{section}{5}
+\section{\centering Tutorial 5}
+
+\input{Tutorials/Tutorial5.tex}
+
+\newpage 
+
+\setcounter{section}{6}
+\section{\centering Tutorial 6}
+
+\input{Tutorials/Tutorial6.tex}
+
+\newpage 
+
+\setcounter{section}{7}
+\section{\centering Tutorial 7}
+
+\input{Tutorials/Tutorial7.tex}
+
+\newpage 
+
+\setcounter{section}{8}
+\section{\centering Tutorial 8}
+
+\input{Tutorials/Tutorial8.tex}
+
+\newpage 
+
+\setcounter{section}{9}
+\section{\centering Tutorial 9}
+
+\input{Tutorials/Tutorial9.tex}
+
+\newpage 
+
+\setcounter{section}{10}
+\section{\centering Tutorial 10}
+
+\input{Tutorials/Tutorial10.tex}
+
+\vspace{1cm}
+\begin{center}
+    Good luck on your finals :)
+\end{center}
+
+\end{document}

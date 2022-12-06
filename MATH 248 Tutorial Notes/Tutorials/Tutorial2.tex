@@ -1,0 +1,269 @@
+\subsection{Section 2.5}
+
+\begin{tcolorbox}[
+        title={Problem 12},
+        valign=center,
+        nobeforeafter,
+        colframe=gray!95!black
+    ]
+Let \(h: \mathbb{R}^3 \rightarrow \mathbb{R}^5\) and \(g: \mathbb{R}^2 \rightarrow \mathbb{R}^3\) be given by
+\(h(x, y, z) = \left(xyz, e^{xz}, x \sin(y), -9x , 17\right)\) and \(g(u, v) = \left(v^2 + 2u, \pi, 2\sqrt{u}\right)\). \\
+
+Find \(\vb{D}\left(h \circ g\right)(1, 1)\).
+\end{tcolorbox}
+
+\begin{solution}
+    Observe that:
+    \begin{align}
+        g(1, 1) &= \left(1 + 2, \pi, 2\right) \\
+        &= (3, \pi, 2)
+    \end{align}
+    
+    Recall by the chain rule that:
+    \begin{align}
+        \vb{D}\left(h \circ g\right)(1, 1) &= \vb{D}h(3, \pi, 2) \vb{D}g(1, 1)
+    \end{align}
+    
+    We compute the derivative matrices of \(h\) and \(g\):
+    \begin{align*}
+        \vb{D}\left(h\right)(x, y, z) &=
+        \begin{bmatrix}
+            yz & xz & xy \\
+            ze^{xz} & 0 & xe^{xz} \\
+            \sin{(y)} & x\cos{(y)} & 0 \\
+            \frac{9}{x^2} & 0 & 0 \\
+            0 & 0 & 0
+        \end{bmatrix} & \vb{D}\left(g\right)(u, v) &=
+        \begin{bmatrix}
+            2 & 2v \\
+            0 & 0 \\
+            \frac{1}{\sqrt{u}} & 0
+        \end{bmatrix}
+    \end{align*}
+    
+    Then:
+    \begin{align*}
+        \vb{D}\left(h \circ g\right)(1, 1) &= \vb{D}h(3, \pi, 2) \vb{D}g(1, 1) \\
+        &= 
+        \begin{bmatrix}
+            2\pi & 6 & 3\pi \\
+            2e^6 & 0 & 3e^6 \\
+            \sin{(\pi)} & 3\cos{(\pi)} & 0 \\
+            \frac{9}{3^2} & 0 & 0 \\
+            0 & 0 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            2 & 2 \\
+            0 & 0 \\
+            \frac{1}{\sqrt{1}} & 0
+        \end{bmatrix} \\
+        &= 
+        \begin{bmatrix}
+            2\pi & 6 & 3\pi \\
+            2e^6 & 0 & 3e^6 \\
+            0 & -3 & 0 \\
+            1 & 0 & 0 \\
+            0 & 0 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            2 & 2 \\
+            0 & 0 \\
+            1 & 0
+        \end{bmatrix} \\
+        &= 
+        \begin{bmatrix}
+            4\pi + 3\pi & 4\pi \\
+            4e^6 + 3e^6 & 4^6 \\
+            0 & 0 \\
+            2 & 2 \\
+            0 & 0
+        \end{bmatrix} \\
+        &= 
+        \begin{bmatrix}
+            7\pi & 4\pi \\
+            7e^6 & 4^6 \\
+            0 & 0 \\
+            2 & 2 \\
+            0 & 0
+        \end{bmatrix}
+    \end{align*}
+\end{solution}
+
+\subsection{Section 2.6}
+
+\begin{tcolorbox}[
+        title={Problem 22 (a)},
+        valign=center,
+        nobeforeafter,
+        colframe=gray!95!black
+    ]
+Captain Ralph is in trouble near the sunny side of Mercury. The temperature of the ship's hull when he is at location \((x, y, z)\) will be given by \(T(x, y, z) = e^{-x^2 - 2y^2 - 3z^2}\), where \(x\), \(y\), and \(z\) are measured in meters. He is currently at \((1, 1, 1)\). \\
+
+In what direction should he proceed in order to
+decrease the temperature most rapidly?
+\end{tcolorbox}
+
+\begin{solution}
+    Recall that the direction of the gradient is the direction of maximal increase.
+    
+    The direction of maximal decrease is therefore the direction of the negative of the gradient.
+    
+    We first compute the gradient of \(T\):
+    \begin{align}
+        \nabla T(x, y, z) &= \left(-2xe^{-x^2 - 2y^2 - 3z^2}, -4ye^{-x^2 - 2y^2 - 3z^2}, -6ze^{-x^2 - 2y^2 - 3z^2}\right)
+    \end{align}
+    
+    The direction of maximal decrease at \((1, 1, 1)\) is therefore given by:
+    \begin{align*}
+        -\nabla T(1, 1, 1) &= -\left(-2e^{-1 - 2 - 3}, -4e^{-1 - 2 - 3}, -6e^{-1 - 2 - 3}\right) \\
+        &= -\left(-2e^{-6}, -4e^{-6}, -6e^{-6}\right) \\
+        &= \left(2, 4, 6\right)e^{-6}
+    \end{align*}
+    
+    The direction of maximal decrease is given by the vector \((2, 4, 6)\). You may normalize the vector if you wish, but it is not necessary.
+\end{solution}
+
+\begin{tcolorbox}[
+        title={Problem 22 (b)},
+        valign=center,
+        nobeforeafter,
+        colframe=gray!95!black
+    ]
+If the ship travels at \(e^8\) meters per second, how fast
+will be the temperature decrease if he proceeds in
+that direction?
+\end{tcolorbox}
+
+\begin{solution}
+    Let \(\vec{v}\) be the velocity of the ship. The rate of change of the temperature along \(\vec{u}\) is given by the directional derivative:
+    \begin{align}
+        \vec{u} \cdot \nabla T
+    \end{align}
+    
+    We note that \(\vec{u}\) is in the direction of \(-\nabla T\) and that \(\|\vec{u}\| = e^8\). 
+    
+    Then:
+    \begin{align*}
+        \vec{u} \cdot \nabla T &= \|\vec{u}\|\|\nabla T\| \cos(\pi) \\
+        &= e^8\sqrt{2^2 + 4^2 + 6^2}e^{-6} \cos(\pi) \\
+        &= -\sqrt{56}e^2 \\
+        &= - 2\sqrt{14}e^2
+    \end{align*}
+    
+    Note that the \(\cos(\pi)\) results from the fact that \(\vec{u}\) and \(\nabla T\) point in opposite directions. 
+    
+    For those who wish to be more rigorous, we may have written:
+    \begin{align}
+        \vec{u} &= -\frac{\nabla T}{\|\nabla T\|}\|\vec{u}\| \\
+        &= -\frac{\nabla T}{\|\nabla T\|}e^8
+    \end{align}
+    since \(e^8\) is the magnitude of \(\vec{u}\) and \(-\frac{\nabla T}{\|\nabla T\|}\) is the unit direction vector of \(\vec{u}\). 
+    
+    The directional derivative therefore becomes:
+    \begin{align*}
+        \vec{u} \cdot \nabla T &= -\frac{\nabla T}{\|\nabla T\|}e^8 \cdot \nabla T \\
+        &= -\frac{\|\nabla T\|^2}{\|\nabla T\|}e^8 \\
+        &= -\|\nabla T\| e^8 \\
+        &= -\sqrt{2^2 + 4^2 + 6^2} e^{-6} e^8 \\
+        &= -\sqrt{56}e^2 \\
+        &= - 2\sqrt{14}e^2
+    \end{align*}
+    
+    Either way, the temperature decreases at a rate of \(2\sqrt{14}e^2\) degrees per second.
+\end{solution}
+
+\begin{tcolorbox}[
+        title={Problem 22 (c)},
+        valign=center,
+        nobeforeafter,
+        colframe=gray!95!black
+    ]
+Unfortunately, the metal of the hull will crack if
+cooled at a rate greater than \(\sqrt{14}e^2\) degrees per
+second. Describe the set of possible directions in
+which he may proceed to bring the temperature
+down at no more than that rate.
+\end{tcolorbox}
+
+\begin{solution}
+    Since we cannot cool the hull faster than \(\sqrt{14}e^2\) degrees per second, we impose the following condition:
+    \begin{align}
+        -\sqrt{14}e^2 &\leq \vec{u} \cdot \nabla T
+    \end{align}
+    
+    We compute the directional derivative:
+    \begin{align*}
+        \vec{u} \cdot \nabla T &= \|\vec{u}\|\|\vec{T}\| \cos(\theta) \\
+        &= 2e^8\sqrt{14} e^{-6} \cos(\theta) \\
+        &= 2\sqrt{14} e^{2} \cos(\theta)
+    \end{align*}
+    
+    This condition is satisfied when:
+    \begin{align*}
+        -\sqrt{14}e^2 &\leq 2\sqrt{14} e^{2} \cos(\theta) \\
+        -1 &\leq 2 \cos(\theta) \\
+        -\frac{1}{2} &\leq \cos(\theta)
+    \end{align*}
+    
+    This implies that \(\theta \in \left[0, \frac{2\pi}{3}\right] \cup \left[\frac{4\pi}{3}, 2\pi\right]\).
+    
+    Depending on your interpretation of this question, if we want to further restrict the angle by considering only directions in which the temperature decreases, we impose the next condition:
+    \begin{align}
+        \vec{u} \cdot \nabla T &< 0 
+    \end{align}
+    
+    This condition is satisfied when:
+    \begin{align*}
+        2\sqrt{14} e^{2} \cos(\theta) &< 0 \\
+        \cos(\theta) &< 0
+    \end{align*}
+    
+    This implies that \(\theta \in \left(\frac{\pi}{2}, \frac{3\pi}{2}\right)\).
+    
+    If we want to bring the temperature down without cooling it too fast, both of these conditions must hold simultaneously. We therefore have that \(\theta \in \left(\frac{\pi}{2}, \frac{2\pi}{3}\right] \cup \left[\frac{4\pi}{3}, \frac{3\pi}{2}\right)\).
+    
+    We recommend you draw a unit circle if this does not convince you.
+\end{solution}
+
+\subsection{Section 3.1}
+
+\begin{tcolorbox}[
+        title={Problem 22},
+        valign=center,
+        nobeforeafter,
+        colframe=gray!95!black
+    ]
+Let \(w = f(x, y)\) be a \(C^2\) function of two variables and let \(x = u + v\), \(y = u - v\). \\
+
+Show that:
+\begin{align}
+    \frac{\partial^2 w}{\partial u \partial v} &= \frac{\partial^2 w}{\partial x^2} - \frac{\partial^2 w}{\partial y^2}
+\end{align}
+\end{tcolorbox}
+
+\begin{proof}
+    We first compute the partial derivatives of \(x\) and \(y\):
+    \begin{align}
+        \frac{\partial x}{\partial u} &= 1 & \frac{\partial x}{\partial v} &= 1 \\
+        \frac{\partial y}{\partial u} &= 1 & \frac{\partial y}{\partial v} &= -1
+    \end{align}
+    
+    By the chain rule:
+    \begin{align*}
+        \frac{\partial w}{\partial v} &= \frac{\partial w}{\partial x}\frac{\partial x}{\partial v} + \frac{\partial w}{\partial y}\frac{\partial y}{\partial v} \\
+        &= \frac{\partial w}{\partial x}\cancelto{1}{\frac{\partial x}{\partial v}} + \frac{\partial w}{\partial y}\cancelto{-1}{\frac{\partial y}{\partial v}} \\
+        &= \frac{\partial w}{\partial x} - \frac{\partial w}{\partial y} \\
+        &= w_x - w_y
+    \end{align*}
+    
+    And:
+    \begin{align*}
+        \frac{\partial^2 w}{\partial u \partial v} &= \frac{\partial w_x}{\partial u} - \frac{\partial w_y}{\partial u} \\
+        &= \frac{\partial w_x}{\partial x}\frac{\partial x}{\partial u} + \frac{\partial w_x}{\partial y}\frac{\partial y}{\partial u} - \frac{\partial w_y}{\partial x}\frac{\partial x}{\partial u} - \frac{\partial w_y}{\partial y}\frac{\partial y}{\partial u} \\
+        &= \frac{\partial w_x}{\partial x}\cancelto{1}{\frac{\partial x}{\partial u}} + \frac{\partial w_x}{\partial y}\cancelto{1}{\frac{\partial y}{\partial u}} - \frac{\partial w_y}{\partial x}\cancelto{1}{\frac{\partial x}{\partial u}} - \frac{\partial w_y}{\partial y}\cancelto{1}{\frac{\partial y}{\partial u}} \\
+        &= \frac{\partial w_x}{\partial x} + \frac{\partial w_x}{\partial y} - \frac{\partial w_y}{\partial x} - \frac{\partial w_y}{\partial y} \\
+        &= \frac{\partial^2 w}{\partial x^2} + \frac{\partial^2 w}{\partial y \partial x} - \frac{\partial^2 w}{\partial x \partial y} - \frac{\partial^2 w}{\partial y^2} \\
+        &= \frac{\partial^2 w}{\partial x^2} + \frac{\partial^2 w}{\partial y \partial x} - \frac{\partial^2 w}{\partial y \partial x} - \frac{\partial^2 w}{\partial y^2} \\
+        &= \frac{\partial^2 w}{\partial x^2} - \frac{\partial^2 w}{\partial y^2} 
+    \end{align*}
+\end{proof}

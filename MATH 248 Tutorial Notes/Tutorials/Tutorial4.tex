@@ -1,0 +1,213 @@
+\subsection{Section 3.5}
+
+\begin{tcolorbox}[
+        title={Problem 18},
+        valign=center,
+        nobeforeafter,
+        colframe=gray!95!black
+    ]
+Is it possible to solve the system of equations:
+\begin{align}
+    \begin{cases}
+        xy^2 + xzu + yv^2 &= 3 \\
+    u^3yz + 2xv - u^2v^2 &= 2
+    \end{cases}
+\end{align}
+
+for \(u(x, y, z)\), \(v(x, y, z)\) near
+\((x, y, z) = (1, 1, 1)\), \((u, v) = (1, 1)\)? \\
+
+Compute \(\frac{\partial v}{\partial y}\) at \((x, y, z) = (1, 1, 1)\).
+\end{tcolorbox}
+
+\begin{solution}
+
+Let:
+\begin{align}
+    F_1 &= xy^2 + xzu + yv^2 - 3 & F_2 &= u^3yz + 2xv - u^2v^2 - 2
+\end{align}
+
+In order to determine whether the system of equations can be solved, we must compute the determinant of the following matrix at the point \((x, y, z, u, v) = (1, 1, 1, 1, 1)\):
+\begin{align}
+    \begin{pmatrix}
+        \frac{\partial F_1}{\partial u} & \frac{\partial F_1}{\partial v} \\
+        \frac{\partial F_2}{\partial u} & \frac{\partial F_2}{\partial v}
+    \end{pmatrix}
+\end{align}
+
+We first compute the partial derivatives of \(F_1\) and \(F_2\) with respect to \(u\) and \(v\) at \((x, y, z, u, v) = (1, 1, 1, 1, 1)\):
+\begin{align}
+    \frac{\partial F_1}{\partial u} &= xz & \frac{\partial F_1}{\partial v} &= 2yv \\
+    &= 1 & &= 2 \\
+    \frac{\partial F_2}{\partial u} &= 3u^2yz - 2uv^2 & \frac{\partial F_2}{\partial v} &= 2x - 2u^2v \\
+    &= 1 & &= 0
+\end{align}
+
+Then:
+\begin{align*}
+    \begin{vmatrix}
+        \frac{\partial F_1}{\partial u} & \frac{\partial F_1}{\partial v} \\
+        \frac{\partial F_2}{\partial u} & \frac{\partial F_2}{\partial v}
+    \end{vmatrix} &=
+    \begin{vmatrix}
+        1 & 2 \\
+        1 & 0 
+    \end{vmatrix} \\
+    &= -2 \\
+    &\neq 0
+\end{align*}
+
+By the General Implicit Function Theorem, there exist unique (smooth) functions \(u(x,y,z)\) and \(v(x,y,z)\) near the point \((x,y,z,u,v) = (1,1,1,1,1)\). The system of equations is therefore solvable.
+
+The partial derivatives of \(u\) and \(v\) may also be computed by implicit differentiation.
+
+We now wish to compute \(\frac{\partial v}{\partial y}\) at \((x, y, z) = (1, 1, 1)\). 
+
+We must implicitly differentiate both \(F_1\) and \(F_2\) with respect to \(y\) at \((x, y, z, u, v) = (1,1,1,1,1)\):
+\begin{align*}
+    \frac{\partial F_1}{\partial y} &= \frac{\partial}{\partial y}\left(xy^2 + xzu + yv^2 - 3\right) & \frac{\partial F_2}{\partial y} &= \frac{\partial}{\partial y}\left(u^3yz + 2xv - u^2v^2 - 2\right) \\
+    0 &= 2xy + xz\frac{\partial u}{\partial y} + v^2 + 2yv\frac{\partial v}{\partial y} & 0 &= 3u^2\frac{\partial u}{\partial y}yz + u^3z + 2x\frac{\partial v}{\partial y} - 2u\frac{\partial u}{\partial y}v^2 - 2u^2v \frac{\partial v}{\partial y} \\
+    0 &= 2 + \frac{\partial u}{\partial y} + 1 + 2\frac{\partial v}{\partial y} & 0 &= 3\frac{\partial u}{\partial y} + 1 + 2\frac{\partial v}{\partial y} - 2\frac{\partial u}{\partial y} - 2\frac{\partial v}{\partial y} \\
+    0 &= 3 + \frac{\partial u}{\partial y} + 2\frac{\partial v}{\partial y} & 0 &= \frac{\partial u}{\partial y} + 1
+\end{align*}
+
+We now solve for \(\frac{\partial v}{\partial y}\) by algebraic manipulation:
+\begin{align*}
+    0 &= 3 + \frac{\partial u}{\partial y} + 2\frac{\partial v}{\partial y} \\
+    0 &= 3 + (-1) + 2\frac{\partial v}{\partial y} \\
+    0 &= 2 + 2\frac{\partial v}{\partial y} \\
+    -1 &= \frac{\partial v}{\partial y}
+\end{align*}
+\end{solution}
+
+\subsection{Section 4.3}
+
+\begin{tcolorbox}[
+        title={Problem 20},
+        valign=center,
+        nobeforeafter,
+        colframe=gray!95!black
+    ]
+Show that \(\vb{c}(t) = (a \cos(t) - b \sin(t) , a \sin(t) + b \cos(t))\) is a flow line for \(\vb{F}(x, y) = (-y, x)\) for all real values of \(a\) and \(b\).
+\end{tcolorbox}
+
+\begin{proof}
+
+Recall that a path \(\vb{c}(t)\) is a flow line for a vector field \(\vb{F}\) if:
+\begin{align}
+    \vb{c}'(t) &= \vb{F}(\vb{c}(t))
+\end{align}
+
+We first compute the derivative of \(\vb{c}(t)\):
+\begin{align*}
+    \vb{c}'(t) &= \frac{d}{dt}(a \cos(t) - b \sin(t) , a \sin(t) + b \cos(t)) \\
+    &= (-a \sin(t) - b \cos(t) , a \cos(t) - b \sin(t))
+\end{align*}
+
+We now evaluate \(\vb{F}\) along the path \(\vb{c}(t)\):
+\begin{align*}
+    \vb{F}(\vb{c}(t)) &= \left(- \left(a\sin(t) + b\cos(t)\right), a \cos(t) - b\sin(t)\right) \\
+    &= \left(- a\sin(t) - b\cos(t), a \cos(t) - b\sin(t)\right)
+\end{align*}
+
+By observation, we find that:
+\begin{align}
+    \vb{c}'(t) &= \vb{F}(\vb{c}(t))
+\end{align}
+
+Therefore, \(\vb{c}(t)\) is a flow line for \(\vb{F}\).
+\end{proof}
+
+\begin{tcolorbox}[
+        title={Problem 21 (a)},
+        valign=center,
+        nobeforeafter,
+        colframe=gray!95!black
+    ]
+Let \(\vb{F}(x, y, z) = (yz, xz, xy)\). \\
+
+Find a function \(f : \mathbb{R}^3 \rightarrow \mathbb{R}\) such that \(\vb{F} = \nabla f\) .
+\end{tcolorbox}
+
+The following, systematic method can be used to solve harder problems. 
+
+\begin{solution}
+    Recall the definition of the gradient:
+    \begin{align}
+        \nabla f &= \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right)
+    \end{align}
+    
+    We wish to find a function \(f\) such that:
+    \begin{align}
+        \left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right) &= (yz, xz, xy) \label{tut4 gradient}
+    \end{align}
+    
+    We integrate the first component with respect to \(x\):
+    \begin{align*}
+        \int \frac{\partial f}{\partial x} \ dx &= \int yz \ dx \\
+        f(x, y, z) &= xyz + g(y, z)
+    \end{align*}
+    where \(g(y, z)\) is our constant of integration with respect to \(x\). 
+    
+    We differentiate the function \(f\) with respect to \(y\):
+    \begin{align*}
+        \frac{\partial f}{\partial y} &= \frac{\partial}{\partial y}\left(xyz + g(y, z)\right) \\
+        xz &= xz + \frac{\partial g}{\partial y}
+    \end{align*}
+    
+    In order to satisfy Equation \eqref{tut4 gradient}, we require \(\frac{\partial g}{\partial y} = 0\). This implies that \(g(y, z)\) is a function of \(z\) only: \(g(y, z) =  h(z)\) for some function \(h(z)\).
+    
+    Then:
+    \begin{align*}
+        f(x, y, z) &= xyz + h(z)
+    \end{align*}
+    
+    We differentiate the function \(f\) with respect to \(z\):
+    \begin{align*}
+        \frac{\partial f}{\partial z} &= \frac{\partial}{\partial z}\left(xyz + h(z)\right) \\
+        xy &= xy + \frac{\partial h}{\partial z}
+    \end{align*}
+    
+    In order to satisfy Equation \eqref{tut4 gradient}, we require \(\frac{\partial h}{\partial z} = 0\). This implies that \(h(z)\) is a constant: \(h(z) =  C\) for some \(C \in \mathbb{R}\).
+    
+    Then:
+    \begin{align*}
+        f(x, y, z) &= xyz + C
+    \end{align*}
+    
+    Therefore, we have found a function \(f\) such that:
+    \begin{align}
+        \nabla f &= (yz, xz, xy)
+    \end{align}
+    
+\end{solution}
+
+\subsection{Section 4.4}
+
+\begin{tcolorbox}[
+        title={Problem 34 (a)},
+        valign=center,
+        nobeforeafter,
+        colframe=gray!95!black
+    ]
+Show that \(\vb{F} = (x^2 + y^2)\vb{i} - 2xy\vb{j}\) is not a gradient field.
+\end{tcolorbox}
+
+\begin{proof}
+    Recall that gradient fields are curl free. \\
+    
+    We compute the curl of \(\vb{F}\):
+    \begin{align*}
+        \nabla \times \vb{F} &= 
+        \begin{vmatrix}
+            \vb{i} & \vb{j} & \vb{k} \\
+            \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+            x^2 + y^2 & -2xy & 0
+        \end{vmatrix} \\
+        &= (0 + 0)\vb{i} + (0 + 0)\vb{j} + (-2y - 2y)\vb{k} \\
+        &= -4y \vb{k} \\
+        &\neq \vb{0}
+    \end{align*}
+    
+    Therefore, \(\vb{F}\) is not a gradient field.
+\end{proof}
